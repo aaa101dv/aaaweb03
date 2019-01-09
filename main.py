@@ -104,7 +104,8 @@ def auth():
 @app.route("/prijava", methods=['POST'])
 def do_auth():
 
-    ldap_server = '18.188.225.152'
+    #ldap_server = '18.188.225.152'
+    ldap_server = '127.0.0.1'
     cn = 'userid={},ou=studenti1,ou=is,ou=vvg,dc=aaa,dc=vvg,dc=hr'
 
     if request.method == 'POST':
@@ -126,7 +127,6 @@ def do_auth():
             return render_template("error.html",naziv=title, error="Korisnik nije registriran!")
     
         if(conn): # <---------provjera konekcije   
-            conn.add('ou=uprava,dc=aaa,dc=vvg,dc=hr', 'organizationalUnit')
             set_session_data(username,row[1])
         else:
             set_session_data("Nitko nije prijavljen.",None)
