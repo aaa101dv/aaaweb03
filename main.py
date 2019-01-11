@@ -112,7 +112,7 @@ def do_auth():
         username = request.form['username']
         password = request.form['password'];
 
-        server = Server(ldap_server, get_info=ALL)
+#
         
 #
 #
