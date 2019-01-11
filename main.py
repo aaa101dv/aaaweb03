@@ -16,7 +16,7 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 sys.setdefaultencoding('utf-8')
 
 student="student1" # <-------------------- zamijeniti student1 vašim korisničkim imenom na AWS serveru
-port='5040' # <--------------------------- 5040 zamijeniti sa 5000 + vaš redni broj sa liste
+port='5041' # <--------------------------- 5040 zamijeniti sa 5000 + vaš redni broj sa liste
 
 title="Autorizacija i autentifikacija";
 
@@ -104,8 +104,8 @@ def auth():
 @app.route("/prijava", methods=['POST'])
 def do_auth():
 
-    #ldap_server = '18.188.225.152'
-    ldap_server = '127.0.0.1'
+    ldap_server = '18.188.225.152'
+    #ldap_server = '127.0.0.1'
     cn = 'userid={},ou=studenti1,ou=is,ou=vvg,dc=aaa,dc=vvg,dc=hr'
 
     if request.method == 'POST':
@@ -127,18 +127,21 @@ def do_auth():
             return render_template("error.html",naziv=title, error="Korisnik nije registriran!")
     
         if(conn): # <---------provjera konekcije   
+            conn.search('ou=is,ou=vvg,dc=aaa,dc=vvg,dc=hr', '(objectclass=account)',attributes=['uid','description'])
+
             set_session_data(username,row[1])
         else:
             set_session_data("Nitko nije prijavljen.",None)
             return render_template("error.html",naziv=title, error="Lozinka nije ispravna!" )
 
-    return render_template("home.html",naziv=title, ime=session["ime_korisnika"]) 
+    return render_template("home.html",ldap_data=conn.entries, naziv=title, ime=session["ime_korisnika"]) 
 
 @app.route("/odjava")
 def logout():
     session['username']=None
     session["ime_korisnika"]="Nitko nije prijavljen"
     return render_template("home.html",naziv=title, ime=session["ime_korisnika"]) 
+
 
 
 

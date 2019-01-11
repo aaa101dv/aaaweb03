@@ -2,4 +2,17 @@
 
 {% block content %}
 <div class="panel content_panel">{{ ime }}</div>
+
+{% if ldap_data %}
+<table class="account_table">
+<tbody>
+    {% for entry in ldap_data %}
+      <tr>
+        <td>uid={{entry.uid[0]}}</td>
+        <td>{{entry.description[0]}}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
 {% endblock %}      

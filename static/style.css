@@ -18,6 +18,16 @@
     border-top-right-radius : 10px;
 }
 
+.account_table {
+    margin: 1em;
+    font-size: .8em;
+    color: navy;
+    background: rgb(194, 221, 236);
+    border: 1px solid darkblue;
+    padding: .7em;
+    font-family:Verdana;
+} 
+
 .content_panel {    
     background: beige;      
     border-bottom-left-radius : 10px;
