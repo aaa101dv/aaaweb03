@@ -5,7 +5,7 @@ import time
 import md5
 import re
 import sys
-from ldap3 import Server, Connection, ALL #<-----------------------import biblioteka
+#
 
 reload(sys)
 
@@ -104,8 +104,8 @@ def auth():
 @app.route("/prijava", methods=['POST'])
 def do_auth():
 
-    ldap_server = '127.0.0.1'    
-    dn = 'userid={},ou=studenti1,ou=is,ou=vvg,dc=aaa,dc=vvg,dc=hr'
+#
+#
 
     if request.method == 'POST':
 
@@ -114,12 +114,12 @@ def do_auth():
 
         server = Server(ldap_server, get_info=ALL)
         
-        try:
-            conn = Connection(server, dn.format(username), password, auto_bind=True)
-        except:
-            print "Prijava putem LDAP servera nije uspijela !"
-            conn = False    
-        
+#
+#
+#
+#
+#
+
         row = check_user(username)
 
         if(row is None):
