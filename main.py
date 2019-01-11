@@ -104,9 +104,8 @@ def auth():
 @app.route("/prijava", methods=['POST'])
 def do_auth():
 
-    ldap_server = '18.188.225.152'
-    #ldap_server = '127.0.0.1'
-    cn = 'userid={},ou=studenti1,ou=is,ou=vvg,dc=aaa,dc=vvg,dc=hr'
+    ldap_server = '127.0.0.1'    
+    dn = 'userid={},ou=studenti1,ou=is,ou=vvg,dc=aaa,dc=vvg,dc=hr'
 
     if request.method == 'POST':
 
@@ -116,7 +115,7 @@ def do_auth():
         server = Server(ldap_server, get_info=ALL)
         
         try:
-            conn = Connection(server, cn.format(username), password, auto_bind=True)
+            conn = Connection(server, dn.format(username), password, auto_bind=True)
         except:
             print "Prijava putem LDAP servera nije uspijela !"
             conn = False    
