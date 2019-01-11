@@ -16,7 +16,7 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 sys.setdefaultencoding('utf-8')
 
 student="student1" # <-------------------- zamijeniti student1 vašim korisničkim imenom na AWS serveru
-port='5041' # <--------------------------- 5040 zamijeniti sa 5000 + vaš redni broj sa liste
+port='5040' # <--------------------------- 5040 zamijeniti sa 5000 + vaš redni broj sa liste
 
 title="Autorizacija i autentifikacija";
 
